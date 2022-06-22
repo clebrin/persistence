@@ -9,7 +9,7 @@ When a software or, here, a malware is executed on a device, it follows the inst
 ### What does this program ?
 This program aims to detect persistency techniques from syscall traces of a malware that ran on a windows OS.
 
-# How it works ?
+# How does it work ?
 
 The syscall traces are saved in pickle files, I use a code from D.B. to load and parse them. Some of the most common persistency techniques are gathered in the MITRE ATT&CK® base and other blogs describe the link between the techniques and the specific registry keys in windows.<br/>
 I search in each trace if one of those keys have been modified.<br/>
