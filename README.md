@@ -30,8 +30,8 @@ When the startup sequence starts, the system look for the needed drivers and thi
 ### Run Services
 
 It then need to know where those needed drivers are located and this is store in the registries above : <br/>
-`HKLM\Software\Microsoft\Windows\CurrentVersion\Run\Services\Once
-HKLM\Software\Microsoft\Windows\CurrentVersion\Run\Services`
+`HKLM\Software\Microsoft\Windows\CurrentVersion\Run\Services\Once`<br/>
+`HKLM\Software\Microsoft\Windows\CurrentVersion\Run\Services`
 
 ### WinLogon Userinit
 
@@ -46,10 +46,24 @@ This process handles the Secure Attention Sequence (SAS) and the `WinLogon Notif
 ### Run
 
 This is probably the most commom persistency technique because those are the list of file with AutoStart Extension Points(ASEP) meaning that they will be launch automatically. If their exploit fails to obtain NT AUTHORITY\SYSTEM or administrator-level rights they can always create a key under the "user" run keys and persist their access.<br/>
-`HKCU\Software\Microsoft\Windows\CurrentVersion\Run
-HKCU\Software\Microsoft\Windows\CurrentVersion\RunOnce
-HKLM\Software\Microsoft\Windows\CurrentVersion\Run
-HKLM\Software\Microsoft\Windows\CurrentVersion\RunOnce`
+`HKCU\Software\Microsoft\Windows\CurrentVersion\Run`<br/>
+`HKCU\Software\Microsoft\Windows\CurrentVersion\RunOnce`<br/>
+`HKLM\Software\Microsoft\Windows\CurrentVersion\Run`<br/>
+`HKLM\Software\Microsoft\Windows\CurrentVersion\RunOnce`
+
+### AppInit
+
+As most executables load User32.dll and `HKLM\SOFTWARE\Microsoft\WindowsNT\CurrentVersion\Windows\AppInit_DLLs` show the DLLs loaded by the User32.dll so it is a good idea to keep an eye on this.
+
+### Shell Folder
+
+The following Registry keys can be used to set startup folder items for persistence:<br/>
+`HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\UserShell Folders`
+`HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\ShellFolders`
+`HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\ShellFolders`
+`HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\UserShellFolders`
+
+
 
 # Bibliography
 

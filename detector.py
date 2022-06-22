@@ -111,29 +111,19 @@ def detection(api_name, arg):
     elif api_name in set_value and arg.endswith("microsoft\\windowsnt\\currentversion\\winlogon\\notify\\wlogon"):
         return "WinLogon Notify"
 
-
     # Run key attack
     if api_name in set_value and (arg.endswith("\\microsoft\\windows\\currentversion\\runonce") or arg.endswith("\\microsoft\\windows\\currentversion\\run")):
         return level + "Run"
 
-    
-
-    
-    # Run key attack
-    elif api_name in set_value and arg.endswith("\\microsoft\\windows\\currentversion\\policies\\explorer\\run"):
-        return level + "Run Explorer"
-
+    # User32.dll
     elif api_name in set_value and arg.endswith("\\microsoft\\windowsnt\\currentversion\\windows"):
-        return level + "AppInit"
+        return "AppInit"
+
+    # startup folder items
+    elif api_name in set_value and (arg.endswith("microsoft\\windows\\currentversion\\explorer\\usershellfolders") or arg.endswith("microsoft\\windows\\currentversion\\explorer\\shellfolders") ):
+        return level + "Shell Folder"
 
     
-
-    elif api_name in set_value and arg.endswith("microsoft\\windows\\currentversion\\explorer\\usershellfolders"):
-        return level + "Startup Keys User"
-
-    elif api_name in set_value and arg.endswith("microsoft\\windows\\currentversion\\explorer\\shellfolders"):
-        return level + "Startup Keys Machine"
-
     # if no attack found
     return ""
 
