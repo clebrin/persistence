@@ -58,9 +58,9 @@ As most executables load User32.dll and `HKLM\SOFTWARE\Microsoft\WindowsNT\Curre
 ### Shell Folder
 
 The following Registry keys can be used to set startup folder items for persistence:<br/>
-`HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\UserShell Folders`
-`HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\ShellFolders`
-`HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\ShellFolders`
+`HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\UserShell Folders`<br/>
+`HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\ShellFolders`<br/>
+`HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\ShellFolders`<br/>
 `HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\UserShellFolders`
 
 
