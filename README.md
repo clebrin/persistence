@@ -1,6 +1,6 @@
 # Introduction
 
-### What is a persistency techniques ?
+### What is a persistency technique ?
 Once a flaw is detected in a system and that an attacker wants to exploit it with a malware, he must create the program, infect a device with it and make it execute. On of the main difficulties to achieve such a mission is to enter the device, it can be made throught different technics such as phishing, downloading a malicious file, insering a usb key etc... In order to keep the malware working on the machine after a reboot or a logout/login and avoid doing the "infection phase" again the attacker needs to implement technics that wake the malware up on at a certain point: the persistency techniques.
 
 ### What is a syscall trace ?
@@ -19,23 +19,37 @@ Above is a list of techniques I detect and there link with the registry keys.
 
 *`HKLM` stands for `HKEY_LOCAL_MACHINE` and `HKCU` for `HKEY_CURRENT_USER`. I present the vulnerabilities in order of occurence in the boot sequence.*
 
-## BootExecute
+### BootExecute
 
 The very first program executed when rebooting a windows machine is the `autocheck autochk *` sequence located in the registry `HKLM\System\CurrentControlSet\Control\Session Manager`. It check the integrity of the file-system, if a program is added to this value it will be executed a boot time.
 
-## Services
+### Services
 
 When the startup sequence starts, the system look for the needed drivers and this list is located in `HKLM\System\CurrentControlSet\Services`. This is the famous progress bar under the "Starting Windows..." but if one places his malicious software in the list, it will be executed at that time !
 
-## Run Services
+### Run Services
 
 It then need to know where those needed drivers are located and this is store in the registries above : <br/>
-`HKLM\Software\Microsoft\Windows\CurrentVersion\Run\Services\Once`<br/>
-`HKLM\Software\Microsoft\Windows\CurrentVersion\Run\Services`
+`HKLM\Software\Microsoft\Windows\CurrentVersion\Run\Services\Once
+HKLM\Software\Microsoft\Windows\CurrentVersion\Run\Services`
 
-## WinLogon
+### WinLogon Userinit
 
-This is the part where logons are logoffs are handled. This process handles the Secure Attention Sequence (SAS)
+This is the part where logons are logoffs are handled, normally it points to userinit.exe but if this key can be altered, then that exe will also launch by Winlogon.<br/>
+`HKLM\SOFTWARE\Microsoft\WindowsNT\CurrentVersion\Winlogon`
+
+### WinLogon Notify
+
+This process handles the Secure Attention Sequence (SAS) and the `WinLogon Notify` value is used to notify event handles when SAS happens and loads a process, if the attacker can choose the process list, it can launch his malware.<br/>
+`HKLM\SOFTWARE\Microsoft\WindowsNT\CurrentVersion\Winlogon\Notify`
+
+### Run
+
+This is probably the most commom persistency technique because those are the list of file with AutoStart Extension Points(ASEP) meaning that they will be launch automatically. If their exploit fails to obtain NT AUTHORITY\SYSTEM or administrator-level rights they can always create a key under the "user" run keys and persist their access.<br/>
+`HKCU\Software\Microsoft\Windows\CurrentVersion\Run
+HKCU\Software\Microsoft\Windows\CurrentVersion\RunOnce
+HKLM\Software\Microsoft\Windows\CurrentVersion\Run
+HKLM\Software\Microsoft\Windows\CurrentVersion\RunOnce`
 
 # Bibliography
 

@@ -105,24 +105,20 @@ def detection(api_name, arg):
     elif api_name in set_value and (arg.endswith("microsoft\\windows\\currentversion\\runservices") or arg.endswith("microsoft\\windows\\currentversion\\runservicesonce")):
         return "Run Services"
 
-    
-
     # logon
     elif api_name in set_value and arg.endswith("microsoft\\windowsnt\\currentversion\\winlogon\\userinit"):
-        return level + "WinLogon Userinit"
-    # logon
+        return "WinLogon Userinit"
     elif api_name in set_value and arg.endswith("microsoft\\windowsnt\\currentversion\\winlogon\\notify\\wlogon"):
-        return level + "WinLogon Notify"
+        return "WinLogon Notify"
 
-
-    # RunOnce key attack
-    if api_name in set_value and arg.endswith("\\microsoft\\windows\\currentversion\\runonce"):
-        return level + "Run Once"
 
     # Run key attack
-    elif api_name in set_value and arg.endswith("\\microsoft\\windows\\currentversion\\run"):
+    if api_name in set_value and (arg.endswith("\\microsoft\\windows\\currentversion\\runonce") or arg.endswith("\\microsoft\\windows\\currentversion\\run")):
         return level + "Run"
 
+    
+
+    
     # Run key attack
     elif api_name in set_value and arg.endswith("\\microsoft\\windows\\currentversion\\policies\\explorer\\run"):
         return level + "Run Explorer"
