@@ -92,21 +92,20 @@ def detection(api_name, arg):
     elif arg.startswith("\\registry\\user") : 
         level += "User-level "
 
-    # Controlset session manager : file to be loaded before the windows nt kernel, normaly autocheck autochk *
+
+    # program executed during boot, normaly autocheck autochk *
     if api_name in set_value and (arg.endswith("\\controlset001\\control\\sessionmanager\\bootexecute") or arg.endswith("\\controlset002\\control\\sessionmanager\\bootexecute") or arg.endswith("\\controlset003\\control\\sessionmanager\\bootexecute")):
-        return level + "BootExecute"
+        return "BootExecute"
 
     # list of driver to be loaded
     if api_name in set_value and ("\\controlset001\\services" in arg or "\\controlset002\\services" in arg or "\\controlset003\\services" in arg):
-        return level + "Services"
+        return "Services"
 
-    # other drivers
-    elif api_name in set_value and arg.endswith("microsoft\\windows\\currentversion\\runservices"):
-        return level + "Run Services"
+    # location of drivers
+    elif api_name in set_value and (arg.endswith("microsoft\\windows\\currentversion\\runservices") or arg.endswith("microsoft\\windows\\currentversion\\runservicesonce")):
+        return "Run Services"
 
-    # other drivers
-    elif api_name in set_value and arg.endswith("microsoft\\windows\\currentversion\\runservicesonce"):
-        return level + "Run Services Once"
+    
 
     # logon
     elif api_name in set_value and arg.endswith("microsoft\\windowsnt\\currentversion\\winlogon\\userinit"):

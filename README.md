@@ -17,13 +17,25 @@ Above is a list of techniques I detect and there link with the registry keys.
 
 # Techniques
 
+*`HKLM` stands for `HKEY_LOCAL_MACHINE` and `HKCU` for `HKEY_CURRENT_USER`. I present the vulnerabilities in order of occurence in the boot sequence.*
+
 ## BootExecute
 
-
+The very first program executed when rebooting a windows machine is the `autocheck autochk *` sequence located in the registry `HKLM\System\CurrentControlSet\Control\Session Manager`. It check the integrity of the file-system, if a program is added to this value it will be executed a boot time.
 
 ## Services
 
+When the startup sequence starts, the system look for the needed drivers and this list is located in `HKLM\System\CurrentControlSet\Services`. This is the famous progress bar under the "Starting Windows..." but if one places his malicious software in the list, it will be executed at that time !
+
 ## Run Services
+
+It then need to know where those needed drivers are located and this is store in the registries above : <br/>
+`HKLM\Software\Microsoft\Windows\CurrentVersion\Run\Services\Once`<br/>
+`HKLM\Software\Microsoft\Windows\CurrentVersion\Run\Services`
+
+## WinLogon
+
+This is the part where logons are logoffs are handled. This process handles the Secure Attention Sequence (SAS)
 
 # Bibliography
 
