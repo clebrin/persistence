@@ -67,15 +67,15 @@ def is_empty(file_path: str) -> bool:
     except OSError:
         return False
 
+
 # *************************
 # * My detection function *
 # *************************
 
 def detection(api_name, arg):
 
+    # api for key value modification
     set_value = ["ntsetvaluekey", "zwsetvaluekey"]
-
-    #print(api_name, arg, sep='\t')
 
     # str(None) to avoid exceptions
     if arg is None:
@@ -150,7 +150,8 @@ if __name__ == '__main__':
             assert not is_empty(fpath)
             with open(fpath, "rb") as fp:
 
-                attacks = []
+                # list to store techniques on one file
+                techniques = []
 
                 da: DynAnal = pickle.load(fp)
                 features_list: List = extract_features(da)
@@ -169,17 +170,17 @@ if __name__ == '__main__':
                     # * My analyse *
                     # **************
 
-                    attack = detection(api_name, arg)
-                    if attack:
-                        attacks.append(attack)
+                    tech = detection(api_name, arg)
+                    if tech:
+                        techniques.append(tech)
 
                 # remove duplicates attacks
-                attacks = list(set(attacks))
+                techniques = list(set(techniques))
 
                 # if at least one attack is detected
-                if len(attacks) > 0:
+                if len(techniques) > 0:
                     print("Persistence technique detected in file {} :".format(filename))
-                    for attack in attacks[:-1]:
-                        print("{}".format(attack), end=" || ")
-                    print("{}".format(attacks[-1]))
+                    for technique in techniques[:-1]:
+                        print("{}".format(technique), end=" || ")
+                    print("{}".format(techniques[-1]))
                     print("-------------------------------------------------------------\n")
