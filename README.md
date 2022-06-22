@@ -67,10 +67,10 @@ The following Registry keys can be used to set startup folder items for persiste
 
 # Bibliography
 
-*Article*
+*Article*<br/>
 [Malware Persistence Mechanisms from Zane Gittinsa and Michael Soltysa](https://www.sciencedirect.com/science/article/pii/S1877050920318342)
 
-*Web site*
+*Web site*<br/>
 [ATT&CK persistence tactics](https://attack.mitre.org/matrices/enterprise/windows/)<br/>
 [Andrea Fortuna's blog](https://andreafortuna.org/2017/07/06/malware-persistence-techniques/)<br/>
 [BlackBerry ThreatVector Blog](https://blogs.blackberry.com/en/2013/09/windows-registry-persistence-part-2-the-run-keys-and-search-order)
