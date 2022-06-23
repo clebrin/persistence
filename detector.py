@@ -74,6 +74,7 @@ def is_empty(file_path: str) -> bool:
 
 def detection(api_name, arg):
 
+    print(api_name, arg, sep='\t')
     # api for key value modification
     set_value = ["ntsetvaluekey", "zwsetvaluekey"]
 
@@ -91,6 +92,10 @@ def detection(api_name, arg):
         level += "System-level "
     elif arg.startswith("\\registry\\user") : 
         level += "User-level "
+
+    # LSA
+    if api_name in set_value and ("\\controlset001\\control\\lsa" in arg or "\\controlset002\\control\\lsa" in arg or "\\controlset003\\control\\lsa" in arg):
+        return "Authentication Package"
 
 
     # program executed during boot, normaly autocheck autochk *
