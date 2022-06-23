@@ -1,8 +1,94 @@
 - [Introduction](#introduction)
-	- [What is a persistency technique ?](#what-is-a-persistency-technique)
-	- [What is a syscall trace ?](#what-is-a-syscall-trace)
-	- [What does this program do ?](#what-does-this-program-do)
+	- [What is a persistency technique ?](#what-is-a-persistency-technique-)
+	- [What is a syscall trace ?](#what-is-a-syscall-trace-)
+	- [What does this program do ?](#what-does-this-program-do-)
 - [How does it work ?](#how-does-it-work)
+- [Techniques](#techniques)
+	-[Account Manipulation](#account-manipulation)
+		- [~~Additional Email Delegate Permissions~~](#additional-emaildelegate-permissions)
+		- [~~Device Registration~~](#device-registration)
+	- [BITS Jobs](#bits-jobs)
+	- [Boot or Logon Autostart Execution](#boot-or-logon-autostart-execution)
+		- [Registry Run Keys / Startup Folder](#registry-run-keys--startup-folder)
+			- [BootExecute](#bootexecute)
+			- [Run Services](#run-services)
+			- [Run](#run)
+			- [Shell Folder](#shell-folder)
+		- [Authentication Package](#authentication-package)
+		- [Time Providers](#time-providers)
+		- [Winlogon Helper DLL](#winlogon-helper-dll)
+			- [WinLogon Userinit](#winlogon-userinit)
+			- [WinLogon Notify](#winlogon-notify)
+		- [~~Security Support Provider~~](#security-support-provider)
+		- [~~LSASS Driver~~](#lsass-driver)
+		- [~~Shortcut Modification~~](#shortcut-modification)
+		- [~~Port Monitors~~](#port-monitors)
+		- [~~Print Processors~~](#print-processors)
+		- [~~Active Setup~~](#active-setup)
+	- [Boot or Logon Initialization Scripts](#boot-or-logon-initialization-scripts)
+		- [~~Logon Script~~](#logon-script)
+		- [~~Network Logon Script~~](#network-logon-script)
+	- [Browser Extensions](#-browser-extensions)
+	- [Compromise Client Software Binary](#compromise-client-software-binary)
+	- [Create Account](#create-account)
+		- [~~Local Account~~](#local-account)
+		- [~~Domain Account~~](#domain-account)
+	- [Create or Modify System Process](#create-or-modify-system-process)
+		- [~~Windows Service~~](#windows-service)
+	- [Event Triggered Execution](#event-triggered-execution)
+		- [~~Change Default File Association~~](#change-default-file-association)
+		- [~~Screensaver~~](#screensaver)
+		- [~~Windows Management Instrumentation Event Subscription~~](#windows-management-instrumentation-event-subscription)
+		- [~~Netsh Helper DLL~~](#netsh-helper-dd)
+		- [~~Accessibility Features~~](#accessibility-features)
+		- [~~AppCert DLLs~~](#appcert-dlls)
+		- [AppInit DLLs](#appinit-dlls)
+		- [~~Application Shimming~~](#application-shimming)
+		- [~~Image File Execution Options Injection~~](#image-file-execution-options-injection)
+		- [~~PowerShell Profile~~](#-powershell-profile)
+		- [~~Component Object Model Hijacking~~](#component-object-model-hijacking)
+	- [External Remote Services](#external-remote-services)
+	- [Hijack Execution Flow](#hijack-execution-flow)
+		- [~~DLL Search Order Hijacking~~](#dll-search-order-hijacking)
+		- [~~DLL Side-Loading~~](#dll-side-loading)
+		- [~~Executable Installer File Permissions Weakness~~](#executable-installer-file-permissions-weakness)
+		- [~~Path Interception by PATH Environment Variable~~](#path-interception-by-path-environment-variable)
+		- [~~Path Interception by Search Order Hijacking~~](#path-interception-by-search-order-hijacking)
+		- [~~Path Interception by Unquoted Path~~](#path-interception-by-unquoted-path)
+		- [~~Services File Permissions Weakness~~](#services-file-permissions-weakness)
+		- [~~Services Registry Permissions Weakness~~](#services-registry-permissions-weakness)
+		- [~~COR_PROFILER~~](#cor-profiler)
+		- [~~KernelCallbackTable~~](#kernelcallbacktable)
+	- [Modify Authentication Process](#modify-authentication-process)
+		- [~~Domain Controller Authentication~~](#domain-controller-authentication)
+		- [~~Password Filter DLL~~](#password-filter-dll)
+		- [~~Reversible Encryption~~](#reversible-encryption)
+	- [Office Application Startup](#office-application-startup)
+		- [~~Office Template Macros~~](#office-template-macros)
+		- [~~Office Test~~](#office-test)
+		- [~~Outlook Forms~~](#outlook-forms)
+		- [~~Outlook Home Page~~](#outlook-home-page)
+		- [~~Outlook Rules~~](#outlook-rules)
+		- [~~Add-ins~~](#add-ins)
+	- [Pre-OS Boot](#pre-os-boot)
+		- [~~System Firmware~~](#system-firmware)
+		- [~~Component Firmware~~](#component-firmware)
+		- [~~Bootkit~~](#bootkit)
+	- [Scheduled Task/Job](#scheduled-taskjob)
+		- [~~At~~](#at)
+		- [~~Scheduled Task~~](#scheduled-task)
+	- [Server Software Component](#server-software-component)
+		- [~~SQL Stored Procedures~~](#sql-stored-procedures)
+		- [~~Transport Agent~~](#transport-agent)
+		- [~~Web Shell~~](#web-shell)
+		- [~~IIS Components~~](#iis-components)
+		- [~~Terminal Services DLL~~](#terminal-services-dll)
+	- [Traffic Signaling](#traffic-signaling)
+		- [~~Port Knocking~~](#port-knocking)
+	- [Valid Accounts](#valid-accounts)
+		- [~~Default Accounts~~](#default-accounts)
+		- [~~Domain Accounts~~](#domain-accounts)
+		- [~~Local Accounts~~](#local-accounts)
 
 
 # Introduction
@@ -37,17 +123,17 @@ I crossed out the techniques I can't detect yet.
 	
 ### Registry Run Keys / Startup Folder
 
-#### BootExecute
+			- [BootExecute](#BootExecute)
 
 The very first program executed when rebooting a windows machine is the autocheck autochk * sequence located in the registry `HKLM\System\CurrentControlSet\Control\SessionManager`. It check the integrity of the file-system, if a program is added to this value it will be executed a boot time.
 
-#### Run Services
+			- [Run Services](#Run Services)
 
 The system needs to know where the drivers are located and this is store in the registries above :<br/>
 `HKLM\Software\Microsoft\Windows\CurrentVersion\Run\Services\Once`<br/>
 `HKLM\Software\Microsoft\Windows\CurrentVersion\Run\Services`
 
-#### Run
+			- [Run](#Run)
 
 This is probably the most commom persistency technique because those are the list of file with AutoStart Extension Points(ASEP) meaning that they will be launch automatically. If their exploit fails to obtain NT AUTHORITY\SYSTEM or administrator-level rights they can always create a key under the "user" run keys and persist their access.<br/>
 `HKCU\Software\Microsoft\Windows\CurrentVersion\Run`<br/>
@@ -55,7 +141,7 @@ This is probably the most commom persistency technique because those are the lis
 `HKLM\Software\Microsoft\Windows\CurrentVersion\Run`<br/>
 `HKLM\Software\Microsoft\Windows\CurrentVersion\RunOnce`
 
-#### Shell Folder
+			- [Shell Folder](#Shell Folder)
 
 The following Registry keys can be used to set startup folder items for persistence:
 `HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\UserShell Folders`<br/>
@@ -73,12 +159,12 @@ Time providers are registered in `HKLM\System\CurrentControlSet\Services\W32Time
 
 ### Winlogon Helper DLL
 
-#### WinLogon Userinit
+			- [WinLogon Userinit](#WinLogon Userinit)
 
 This is the part where logons are logoffs are handled, normally it points to userinit.exe but if this key can be altered, then that exe will also launch by Winlogon.<br/>
 `HKLM\SOFTWARE\Microsoft\WindowsNT\CurrentVersion\Winlogon`
 
-#### WinLogon Notify
+			- [WinLogon Notify](#WinLogon Notify)
 
 This process handles the Secure Attention Sequence (SAS) and the WinLogon Notify value is used to notify event handles when SAS happens and loads a process, if the attacker can choose the process list, it can launch his malware.<br/>
 `HKLM\SOFTWARE\Microsoft\WindowsNT\CurrentVersion\Winlogon\Notify`
