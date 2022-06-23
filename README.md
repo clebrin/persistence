@@ -1,13 +1,13 @@
-- [Introduction](#id)
-	- [What is a persistency technique ?](#1.1)
-	- [What is a syscall trace ?](#1.2)
-	- [What does this program do ?](#1.3)
-- [How does it work ?](#2)
+- [Introduction](#introduction)
+	- [What is a persistency technique ?](#what-is-a-persistency-technique)
+	- [What is a syscall trace ?](#what-is-a-syscall-trace)
+	- [What does this program do ?](#what-does-this-program-do)
+- [How does it work ?](#how-does-it-work)
 
 
-# Introduction {#id}
+# Introduction
 
-## What is a persistency technique ? {#1.1}
+## What is a persistency technique ?
 Once an attacker detects a flaw in a system and wants to exploit it with a malware he has to write the program, infect the device and have it executed. One of the main difficulties to achieve such a mission is to enter the device. Different techniques can be used to do this, phishing being the most famous. To avoid doing this "infection phase" multiple times the attacker must ensure that the malware keeps running on the machine after a reboot or a logout/login sequence. He therefor implements specific techniques called "persistency techniques".
 
 ## What is a syscall trace ? {#1.2}
