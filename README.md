@@ -5,7 +5,7 @@
 - [How does it work ?](#2)
 
 
-# Introduction {#1}
+# Introduction{#1}
 
 ## What is a persistency technique ? {#1.1}
 Once an attacker detects a flaw in a system and wants to exploit it with a malware he has to write the program, infect the device and have it executed. One of the main difficulties to achieve such a mission is to enter the device. Different techniques can be used to do this, phishing being the most famous. To avoid doing this "infection phase" multiple times the attacker must ensure that the malware keeps running on the machine after a reboot or a logout/login sequence. He therefor implements specific techniques called "persistency techniques".
