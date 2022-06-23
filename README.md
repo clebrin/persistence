@@ -5,7 +5,7 @@
 - [How does it work ?](#how-does-it-work-)
 - [Techniques](#techniques)
 	- [Account Manipulation](#account-manipulation)
-		- [~~Additional Email Delegate Permissions~~](#additional-emaildelegate-permissions)
+		- [~~Additional Email Delegate Permissions~~](#additional-email-delegate-permissions)
 		- [~~Device Registration~~](#device-registration)
 	- [BITS Jobs](#bits-jobs)
 	- [Boot or Logon Autostart Execution](#boot-or-logon-autostart-execution)
@@ -123,17 +123,17 @@ I crossed out the techniques I can't detect yet.
 	
 ### Registry Run Keys / Startup Folder
 
-			- [BootExecute](#BootExecute)
+#### BootExecute
 
 The very first program executed when rebooting a windows machine is the autocheck autochk * sequence located in the registry `HKLM\System\CurrentControlSet\Control\SessionManager`. It check the integrity of the file-system, if a program is added to this value it will be executed a boot time.
 
-			- [Run Services](#Run Services)
+#### Run Services
 
 The system needs to know where the drivers are located and this is store in the registries above :<br/>
 `HKLM\Software\Microsoft\Windows\CurrentVersion\Run\Services\Once`<br/>
 `HKLM\Software\Microsoft\Windows\CurrentVersion\Run\Services`
 
-			- [Run](#Run)
+#### Run
 
 This is probably the most commom persistency technique because those are the list of file with AutoStart Extension Points(ASEP) meaning that they will be launch automatically. If their exploit fails to obtain NT AUTHORITY\SYSTEM or administrator-level rights they can always create a key under the "user" run keys and persist their access.<br/>
 `HKCU\Software\Microsoft\Windows\CurrentVersion\Run`<br/>
@@ -141,7 +141,7 @@ This is probably the most commom persistency technique because those are the lis
 `HKLM\Software\Microsoft\Windows\CurrentVersion\Run`<br/>
 `HKLM\Software\Microsoft\Windows\CurrentVersion\RunOnce`
 
-			- [Shell Folder](#Shell Folder)
+#### Shell Folder
 
 The following Registry keys can be used to set startup folder items for persistence:
 `HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\UserShell Folders`<br/>
