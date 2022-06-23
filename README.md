@@ -1,15 +1,22 @@
-# Introduction
+- [Introduction](#1)
+	- [What is a persistency technique ?](#1.1)
+	- [What is a syscall trace ?](#1.2)
+	- [What does this program do ?](#1.3)
+- [How does it work ?](#2)
 
-### What is a persistency technique ?
+
+# Introduction {#1}
+
+## What is a persistency technique ? {#1.1}
 Once an attacker detects a flaw in a system and wants to exploit it with a malware he has to write the program, infect the device and have it executed. One of the main difficulties to achieve such a mission is to enter the device. Different techniques can be used to do this, phishing being the most famous. To avoid doing this "infection phase" multiple times the attacker must ensure that the malware keeps running on the machine after a reboot or a logout/login sequence. He therefor implements specific techniques called "persistency techniques".
 
-### What is a syscall trace ?
+## What is a syscall trace ? {#1.2}
 When a software, or in this case a malware,  is run on a device, it follows the instructions coded by the attacker and perform different tasks. Some of those actions require a high level of authorization and the program needs to ask the kernel of the operating system, we call such requests "system calls". It is possible to monitor them and keep a "trace" of it during the execution of the malware.
 
-### What does this program do?
+## What does this program do ? {#1.3}
 This program aims to detect persistency techniques from syscall traces of a malware that ran on a windows OS.
 
-# How does it work ?
+# How does it work ? {#2}
 
 The syscall traces are saved in pickle files, I use a code from D.B. to load and parse them. Some of the most common persistency techniques are gathered in the MITRE ATT&CK® base.<br/>
 I search in each trace if one of those technique is implemented.<br/>
