@@ -57,7 +57,7 @@
 		- [~~Path Interception by Unquoted Path~~](#path-interception-by-unquoted-path)
 		- [~~Services File Permissions Weakness~~](#services-file-permissions-weakness)
 		- [~~Services Registry Permissions Weakness~~](#services-registry-permissions-weakness)
-		- [~~COR_PROFILER~~](#cor-profiler)
+		- [~~COR_PROFILER~~](#cor_profiler)
 		- [~~KernelCallbackTable~~](#kernelcallbacktable)
 	- [Modify Authentication Process](#modify-authentication-process)
 		- [~~Domain Controller Authentication~~](#domain-controller-authentication)
