@@ -1,3 +1,5 @@
+#! python3
+
 import os
 import operator
 import pickle
@@ -74,9 +76,10 @@ def is_empty(file_path: str) -> bool:
 
 def detection(api_name, arg):
 
-    print(api_name, arg, sep='\t')
-    # api for key value modification
+    #print(api_name, arg, sep='\t')
+    # api for key value modification/creation
     set_value = ["ntsetvaluekey", "zwsetvaluekey"]
+    create_value = ["ntcreatevaluekey", "zwcreatevaluekey"]
 
     # str(None) to avoid exceptions
     if arg is None:
@@ -94,47 +97,137 @@ def detection(api_name, arg):
         level += "User-level "
 
 
-
-    # Time provider
-    
-
-    # LSA
-    if api_name in set_value and ("\\controlset001\\control\\lsa" in arg or "\\controlset002\\control\\lsa" in arg or "\\controlset003\\control\\lsa" in arg):
-        return "Authentication Package"
+    # ******************************************
+    # * List of techniques from MITRE database *
+    # ******************************************
 
 
-    # program executed during boot, normaly autocheck autochk *
+    ######## Account Manipulation 
+    #### Additional Email Delegate Permissions
+    #### Device Registration
+
+    ######## BITS Jobs
+
+    ######## Boot or Logon Autostart Execution
+    #### Registry Run Keys / Startup Folder
+    ## BootExecute
     if api_name in set_value and (arg.endswith("\\controlset001\\control\\sessionmanager\\bootexecute") or arg.endswith("\\controlset002\\control\\sessionmanager\\bootexecute") or arg.endswith("\\controlset003\\control\\sessionmanager\\bootexecute")):
         return "BootExecute"
-
-    # list of driver to be loaded
-    if api_name in set_value and ("\\controlset001\\services" in arg or "\\controlset002\\services" in arg or "\\controlset003\\services" in arg):
-        return "Services"
-
-    # location of drivers
+    ## Run Services
     elif api_name in set_value and (arg.endswith("microsoft\\windows\\currentversion\\runservices") or arg.endswith("microsoft\\windows\\currentversion\\runservicesonce")):
         return "Run Services"
-
-    # logon
-    elif api_name in set_value and arg.endswith("microsoft\\windowsnt\\currentversion\\winlogon\\userinit"):
-        return "WinLogon Userinit"
-    elif api_name in set_value and arg.endswith("microsoft\\windowsnt\\currentversion\\winlogon\\notify\\wlogon"):
-        return "WinLogon Notify"
-
-    # Run key attack
-    if api_name in set_value and (arg.endswith("\\microsoft\\windows\\currentversion\\runonce") or arg.endswith("\\microsoft\\windows\\currentversion\\run")):
+    ## Run
+    elif api_name in set_value and (arg.endswith("\\microsoft\\windows\\currentversion\\runonce") or arg.endswith("\\microsoft\\windows\\currentversion\\run")):
         return level + "Run"
-
-    # User32.dll
-    elif api_name in set_value and arg.endswith("\\microsoft\\windowsnt\\currentversion\\windows"):
-        return "AppInit"
-
-    # startup folder items
+    ## Shell Folder
     elif api_name in set_value and (arg.endswith("microsoft\\windows\\currentversion\\explorer\\usershellfolders") or arg.endswith("microsoft\\windows\\currentversion\\explorer\\shellfolders") ):
         return level + "Shell Folder"
+    #### Authentication Package
+    elif api_name in set_value and ("\\controlset001\\control\\lsa" in arg or "\\controlset002\\control\\lsa" in arg or "\\controlset003\\control\\lsa" in arg):
+        return "Authentication Package"
+    #### Time Providers
+    #### Winlogon Helper DLL
+    ## WinLogon Userinit
+    elif api_name in set_value and arg.endswith("microsoft\\windowsnt\\currentversion\\winlogon\\userinit"):
+        return "WinLogon Userinit"
+    ## WinLogon Notify
+    elif api_name in set_value and arg.endswith("microsoft\\windowsnt\\currentversion\\winlogon\\notify\\wlogon"):
+        return "WinLogon Notify"
+    #### Security Support Provider
+    #### LSASS Driver
+    #### Shortcut Modification
+    #### Port Monitors
+    #### Print Processors
+    #### Active Setup
 
-    
-    # if no attack found
+    ######## Boot or Logon Initialization Scripts
+    #### Logon Script
+    #### Network Logon Script
+
+    ######## Browser Extensions
+
+    ######## Compromise Client Software Binary
+
+    ######## Create Account
+    #### Local Account
+    #### Domain Account
+
+    ######## Create or Modify System Process
+    #### Windows Service
+    elif api_name in set_value and ("\\controlset001\\services" in arg or "\\controlset002\\services" in arg or "\\controlset003\\services" in arg):
+        return "Services"
+
+    ######## Event Triggered Execution
+    #### Change Default File Association
+    #### Screensaver
+    #### Windows Management Instrumentation Event Subscription
+    #### Netsh Helper DLL
+    #### Accessibility Features
+    #### AppCert DLLs
+    #### AppInit DLLs
+    elif api_name in set_value and arg.endswith("\\microsoft\\windowsnt\\currentversion\\windows"):
+        return "AppInit"
+    #### Application Shimming
+    #### Image File Execution Options Injection
+    #### PowerShell Profile
+    #### Component Object Model Hijacking
+
+    ######## External Remote Services
+
+    ######## Hijack Execution Flow
+    #### DLL Search Order Hijacking
+    #### DLL Side-Loading
+    #### Executable Installer File Permissions Weakness
+    #### Path Interception by PATH Environment Variable
+    #### Path Interception by Search Order Hijacking
+    #### Path Interception by Unquoted Path
+    #### Services File Permissions Weakness
+    #### Services Registry Permissions Weakness
+    #### COR_PROFILER
+    #### KernelCallbackTable
+
+    ######## Modify Authentication Process
+    #### Domain Controller Authentication
+    #### Password Filter DLL
+    #### Reversible Encryption
+
+    ######## Office Application Startup
+    #### Office Template Macros
+    elif api_name in set_value and arg.endswith("outlook\\customforms\\compose"):
+        return "Office Template Macros"
+    #### Office Test
+    elif api_name in create_value and arg.endswith("software\\microsoft\\officetest\\special\\perf"):
+        return " Office Test"
+    #### Outlook Forms
+    #### Outlook Home Page
+    #### Outlook Rules
+    #### Add-ins
+
+    ######## Pre-OS Boot
+    #### System Firmware
+    #### Component Firmware
+    #### Bootkit
+
+    ######## Scheduled Task/Job
+    #### At
+    #### Scheduled Task
+
+    ######## Server Software Component
+    #### SQL Stored Procedures
+    #### Transport Agent
+    #### Web Shell
+    #### IIS Components
+    #### Terminal Services DLL
+
+    ######## Traffic Signaling
+    #### Port Knocking
+
+    ######## Valid Accounts
+    #### Default Accounts
+    #### Domain Accounts
+    #### Local Accounts
+
+    ## if no attack found
     return ""
 
 

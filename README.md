@@ -64,8 +64,8 @@
 		- [~~Password Filter DLL~~](#password-filter-dll)
 		- [~~Reversible Encryption~~](#reversible-encryption)
 	- [Office Application Startup](#office-application-startup)
-		- [~~Office Template Macros~~](#office-template-macros)
-		- [~~Office Test~~](#office-test)
+		- [Office Template Macros](#office-template-macros)
+		- [Office Test](#office-test)
 		- [~~Outlook Forms~~](#outlook-forms)
 		- [~~Outlook Home Page~~](#outlook-home-page)
 		- [~~Outlook Rules~~](#outlook-rules)
@@ -236,8 +236,15 @@ As most executables load User32.dll and `HKLM\SOFTWARE\Microsoft\WindowsNT\Curre
 
 ## Office Application Startup
 	
-### ~~Office Template Macros~~
-### ~~Office Test~~
+### Office Template Macros
+
+The base templates within the application are used each time an application starts. Office Visual Basic for Applications (VBA) macros can be inserted into the base template and used to execute code when the respective Office application starts. It is important thus to verify the registry associated.
+
+### Office Test
+
+An Office Test Registry location exists that allows a user to specify an arbitrary DLL that will be executed every time an Office application is started. If the attackers create that key it is very likely that he placed his malicious code in here.<br/>
+`HKCU\Software\Microsoft\Office test\Special\Perf`
+
 ### ~~Outlook Forms~~
 ### ~~Outlook Home Page~~
 ### ~~Outlook Rules~~
