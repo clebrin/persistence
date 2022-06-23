@@ -34,7 +34,7 @@
 		- [~~Local Account~~](#local-account)
 		- [~~Domain Account~~](#domain-account)
 	- [Create or Modify System Process](#create-or-modify-system-process)
-		- [~~Windows Service~~](#windows-service)
+		- [Windows Service](#windows-service)
 	- [Event Triggered Execution](#event-triggered-execution)
 		- [~~Change Default File Association~~](#change-default-file-association)
 		- [~~Screensaver~~](#screensaver)
@@ -192,9 +192,9 @@ This process handles the Secure Attention Sequence (SAS) and the WinLogon Notify
 
 ## Create or Modify System Process
 
+### Windows Service
+
 Windows need to know the list of drivers to load, they are located here : `HKLM\SYSTEM\CurrentControlSet\Services`. If a malicious process is added here it might be launched during this phase (the famous progress bar "Windows Starting...")
-	
-### ~~Windows Service~~
 
 ## Event Triggered Execution
 	
