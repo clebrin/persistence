@@ -18,16 +18,14 @@ I search in each trace if one of those technique is implemented.<br/>
 
 `HKLM` stands for `HKEY_LOCAL_MACHINE` and `HKCU` for `HKEY_CURRENT_USER`.
 
-	## Account Manipulation
+## Account Manipulation
 	
-		### Additional Email Delegate Permissions
-
-		### Device Registration
-
+### Additional Email Delegate Permissions
+### Device Registration
 
 ## BITS Jobs
 	
-## Boot or Logon Autostart Execution (10)
+## Boot or Logon Autostart Execution
 	
 ### Registry Run Keys / Startup Folder
 ### Authentication Package
@@ -39,30 +37,26 @@ I search in each trace if one of those technique is implemented.<br/>
 ### Port Monitors
 ### Print Processors
 ### Active Setup
-## Boot or Logon Initialization Scripts (2)
+
+## Boot or Logon Initialization Scripts
 	
-=
-	
-### Logon Script (Windows)
+### Logon Script
 ### Network Logon Script
+
 ## Browser Extensions
 	
 ## Compromise Client Software Binary
 	
-## Create Account (2)
-	
-=
+## Create Account
 	
 ### Local Account
 ### Domain Account
-## Create or Modify System Process (1)
-	
-=
+
+## Create or Modify System Process
 	
 ### Windows Service
-## Event Triggered Execution (11)
-	
-=
+
+## Event Triggered Execution
 	
 ### Change Default File Association
 ### Screensaver
@@ -78,9 +72,7 @@ I search in each trace if one of those technique is implemented.<br/>
 
 ## External Remote Services
 	
-## Hijack Execution Flow (10)
-	
-=
+## Hijack Execution Flow
 	
 ### DLL Search Order Hijacking
 ### DLL Side-Loading
@@ -93,17 +85,13 @@ I search in each trace if one of those technique is implemented.<br/>
 ### COR_PROFILER
 ### KernelCallbackTable
 
-## Modify Authentication Process (3)
-	
-=
+## Modify Authentication Process
 	
 ### Domain Controller Authentication
 ### Password Filter DLL
 ### Reversible Encryption
 
-## Office Application Startup (6)
-	
-=
+## Office Application Startup
 	
 ### Office Template Macros
 ### Office Test
@@ -112,24 +100,18 @@ I search in each trace if one of those technique is implemented.<br/>
 ### Outlook Rules
 ### Add-ins
 
-## Pre-OS Boot (3)
-	
-=
+## Pre-OS Boot
 	
 ### System Firmware
 ### Component Firmware
 ### Bootkit
 
-## Scheduled Task/Job (2)
-	
-=
+## Scheduled Task/Job
 	
 ### At
 ### Scheduled Task
 
-## Server Software Component (5)
-	
-=
+## Server Software Component
 	
 ### SQL Stored Procedures
 ### Transport Agent
@@ -137,15 +119,11 @@ I search in each trace if one of those technique is implemented.<br/>
 ### IIS Components
 ### Terminal Services DLL
 
-## Traffic Signaling (1)
-	
-=
+## Traffic Signaling
 	
 ### Port Knocking
 
-## Valid Accounts (3)
-	
-=
+## Valid Accounts
 	
 ### Default Accounts
 ### Domain Accounts
