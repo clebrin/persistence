@@ -191,6 +191,8 @@ This process handles the Secure Attention Sequence (SAS) and the WinLogon Notify
 ### ~~Domain Account~~
 
 ## Create or Modify System Process
+
+Windows need to know the list of drivers to load, they are located here : `HKLM\SYSTEM\CurrentControlSet\Services`. If a malicious process is added here it might be launched during this phase (the famous progress bar "Windows Starting...")
 	
 ### ~~Windows Service~~
 
