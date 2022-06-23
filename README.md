@@ -143,7 +143,7 @@ This is probably the most commom persistency technique because those are the lis
 
 #### Shell Folder
 
-The following Registry keys can be used to set startup folder items for persistence:
+The following Registry keys can be used to set startup folder items for persistence:<br/>
 `HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\UserShell Folders`<br/>
 `HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\ShellFolders`<br/>
 `HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\ShellFolders`<br/>
@@ -159,12 +159,12 @@ Time providers are registered in `HKLM\System\CurrentControlSet\Services\W32Time
 
 ### Winlogon Helper DLL
 
-			- [WinLogon Userinit](#WinLogon Userinit)
+#### WinLogon Userinit
 
 This is the part where logons are logoffs are handled, normally it points to userinit.exe but if this key can be altered, then that exe will also launch by Winlogon.<br/>
 `HKLM\SOFTWARE\Microsoft\WindowsNT\CurrentVersion\Winlogon`
 
-			- [WinLogon Notify](#WinLogon Notify)
+#### WinLogon Notify
 
 This process handles the Secure Attention Sequence (SAS) and the WinLogon Notify value is used to notify event handles when SAS happens and loads a process, if the attacker can choose the process list, it can launch his malware.<br/>
 `HKLM\SOFTWARE\Microsoft\WindowsNT\CurrentVersion\Winlogon\Notify`
