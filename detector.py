@@ -93,6 +93,11 @@ def detection(api_name, arg):
     elif arg.startswith("\\registry\\user") : 
         level += "User-level "
 
+
+
+    # Time provider
+    
+
     # LSA
     if api_name in set_value and ("\\controlset001\\control\\lsa" in arg or "\\controlset002\\control\\lsa" in arg or "\\controlset003\\control\\lsa" in arg):
         return "Authentication Package"
