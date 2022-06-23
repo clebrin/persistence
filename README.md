@@ -20,7 +20,7 @@ I search in each trace if one of those technique is implemented.<br/>
 
 ## Account Manipulation
 	
-### Additional Email Delegate Permissions
+### *Additional Email Delegate Permissions*
 ### Device Registration
 
 ## BITS Jobs
