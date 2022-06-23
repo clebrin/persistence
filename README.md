@@ -20,8 +20,8 @@ I search in each trace if one of those technique is implemented.<br/>
 
 ## Account Manipulation
 	
-### *Additional Email Delegate Permissions*
-### Device Registration
+### ~~Additional Email Delegate Permissions~~
+### <del>Device Registration</del>
 
 ## BITS Jobs
 	
