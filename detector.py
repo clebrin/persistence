@@ -76,7 +76,6 @@ def is_empty(file_path: str) -> bool:
 
 def detection(api_name, arg):
 
-    #print(api_name, arg, sep='\t')
     # api for key value modification/creation
     set_value = ["ntsetvaluekey", "zwsetvaluekey"]
     create_value = ["ntcreatevaluekey", "zwcreatevaluekey"]
@@ -227,7 +226,7 @@ def detection(api_name, arg):
     #### Domain Accounts
     #### Local Accounts
 
-    ## if no attack found
+    # if no attack found
     return ""
 
 
